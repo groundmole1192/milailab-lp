@@ -118,11 +118,22 @@ a { color: inherit; text-decoration: none; }
 
 /* ===== HERO ===== */
 .hero {
+  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
   padding-top: 72px;
-  background: #ffffff;
+  background-image: url('images/hero_bg.jpg');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.75);
+  z-index: 1;
 }
 .hero-inner {
   display: grid;
@@ -132,6 +143,8 @@ a { color: inherit; text-decoration: none; }
   max-width: 1120px;
   margin: 0 auto;
   padding: 80px 24px;
+  position: relative;
+  z-index: 2;
 }
 .hero-eyebrow {
   font-size: 14px;
@@ -148,6 +161,7 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: -0.03em;
   margin-bottom: 24px;
   color: var(--text-primary);
+  text-shadow: 0 0 20px rgba(255,255,255,1), 0 0 40px rgba(255,255,255,0.9);
 }
 .hero-title span { color: var(--accent); }
 .hero-desc {
@@ -158,13 +172,22 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 40px;
 }
 .hero-photo-wrap {
+  position: relative;
   border-radius: var(--radius-large);
   overflow: hidden;
-  box-shadow: var(--card-shadow);
+  box-shadow: 0 24px 64px rgba(91,78,232,0.25);
   aspect-ratio: 4/5;
-  background: linear-gradient(135deg, #f0effe 0%, #e8e5fb 100%);
+}
+.hero-photo-glow {
+  position: absolute;
+  inset: -40px;
+  background: radial-gradient(ellipse at center, rgba(91,78,232,0.25) 0%, rgba(91,78,232,0.08) 50%, transparent 75%);
+  z-index: 0;
+  border-radius: 50%;
 }
 .hero-photo-wrap img {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -798,6 +821,7 @@ a { color: inherit; text-decoration: none; }
       <a href="#contact" class="btn-primary">まずは無料で相談する</a>
     </div>
     <div class="hero-photo-wrap">
+      <div class="hero-photo-glow"></div>
       <img src="images/hero_main.jpg" alt="Mi-LAI Lab AIでホームページ制作">
     </div>
   </div>
