@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi-LAI Lab | AIで、すぐできます。奈良県内中小事業者向けAI活用・HP制作</title>
+<meta name="description" content="奈良県内の中小事業者向けにAIを活用したホームページ制作・業務自動化を提供します。HP制作¥50,000〜、AI業務自動化¥10,000〜。まずは無料相談。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', 'Noto Sans JP', -apple-system, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #222222;
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --accent: #5B4EE8;
+  --accent-dark: #4739C4;
+  --accent-light: #EAE8FC;
+  --text-primary: #222222;
+  --text-secondary: #6a6a6a;
+  --surface-alt: #FAFAFB;
+  --border: #e0e0e0;
+  --card-shadow: rgba(0,0,0,0.02) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 6px, rgba(0,0,0,0.10) 0px 4px 8px;
+  --hover-shadow: rgba(0,0,0,0.08) 0px 4px 12px;
+  --radius-btn: 8px;
+  --radius-card: 20px;
+  --radius-large: 32px;
+}
+
+/* ===== UTILITY ===== */
+.container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+.section-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 48px;
+  text-align: center;
+}
+.btn-primary {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: var(--radius-btn);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  white-space: nowrap;
+}
+.btn-primary:hover { background: var(--accent-dark); box-shadow: var(--hover-shadow); }
+.btn-primary:active { transform: scale(0.97); }
+.btn-outline {
+  display: inline-block;
+  background: transparent;
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 13px 31px;
+  border-radius: var(--radius-btn);
+  border: 2px solid var(--accent);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-outline:hover { background: var(--accent-light); }
+
+/* ===== NAVIGATION ===== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  height: 72px;
+}
+.nav-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-logo img {
+  height: 40px;
+  width: auto;
+  border-radius: 6px;
+}
+.nav-logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 72px;
+  background: #ffffff;
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+.hero-eyebrow {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.hero-title {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+}
+.hero-title span { color: var(--accent); }
+.hero-desc {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+.hero-photo-wrap {
+  border-radius: var(--radius-large);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  aspect-ratio: 4/5;
+  background: linear-gradient(135deg, #f0effe 0%, #e8e5fb 100%);
+}
+.hero-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* ===== WORRY SECTION ===== */
+.section-worry {
+  padding: 96px 0;
+  background: var(--surface-alt);
+}
+.worry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 64px;
+}
+.worry-card {
+  background: #fff;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.worry-card:hover { box-shadow: var(--hover-shadow); transform: translateY(-2px); }
+.worry-card-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+.worry-card-body {
+  padding: 20px 24px 24px;
+}
+.worry-card-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.worry-card-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.55;
+}
+.worry-transition {
+  text-align: center;
+  font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  padding: 48px 24px;
+  background: linear-gradient(135deg, var(--accent-light) 0%, #f0effe 100%);
+  border-radius: var(--radius-large);
+}
+.worry-transition span { color: var(--accent); }
+
+/* ===== SERVICE SECTION ===== */
+.section-service {
+  padding: 96px 0;
+  background: #ffffff;
+}
+.service-block { margin-bottom: 96px; }
+.service-block:last-child { margin-bottom: 0; }
+.service-hero-img {
+  width: 100%;
+  aspect-ratio: 16/7;
+  object-fit: cover;
+  border-radius: var(--radius-large);
+  box-shadow: var(--card-shadow);
+  margin-bottom: 48px;
+}
+.service-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+.service-title-group {}
+.service-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.service-title {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+.service-price {
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 22px;
+  font-weight: 700;
+  padding: 12px 24px;
+  border-radius: var(--radius-btn);
+  white-space: nowrap;
+}
+.service-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.service-features h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+.feature-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.feature-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+.feature-list li::before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  background: var(--accent);
+  border-radius: 50%;
+  margin-top: 2px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-size: 12px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.service-steps {}
+.service-steps h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+.step-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.step-num {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+.step-text {
+  padding-top: 4px;
+  font-size: 15px;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+/* ===== STRENGTH SECTION ===== */
+.section-strength {
+  padding: 96px 0;
+  background: var(--surface-alt);
+}
+.strength-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.strength-card {
+  background: #fff;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.strength-card:hover { box-shadow: var(--hover-shadow); transform: translateY(-2px); }
+.strength-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+.strength-body {
+  padding: 24px 28px 28px;
+}
+.strength-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+.strength-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ===== ACHIEVEMENT SECTION ===== */
+.section-achievement {
+  padding: 96px 0;
+  background: #ffffff;
+}
+.achievement-banner {
+  width: 100%;
+  aspect-ratio: 2/1;
+  object-fit: cover;
+  border-radius: var(--radius-large);
+  box-shadow: var(--card-shadow);
+  margin-bottom: 64px;
+}
+.achievement-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.stat-card {
+  text-align: center;
+  padding: 40px 24px;
+  background: var(--surface-alt);
+  border-radius: var(--radius-card);
+}
+.stat-num {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+.stat-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* ===== PRICING SECTION ===== */
+.section-pricing {
+  padding: 96px 0;
+  background: var(--surface-alt);
+}
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.pricing-card {
+  background: #fff;
+  border-radius: var(--radius-card);
+  padding: 32px;
+  box-shadow: var(--card-shadow);
+}
+.pricing-card.featured {
+  border: 2px solid var(--accent);
+}
+.pricing-service-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.pricing-plan-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+.pricing-price {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+.pricing-duration {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+.pricing-note {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ===== FLOW SECTION ===== */
+.section-flow {
+  padding: 96px 0;
+  background: #ffffff;
+}
+.flow-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  position: relative;
+}
+.flow-list::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: calc(10% + 4px);
+  right: calc(10% + 4px);
+  height: 2px;
+  background: var(--accent-light);
+  z-index: 0;
+}
+.flow-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 12px;
+  position: relative;
+  z-index: 1;
+}
+.flow-circle {
+  width: 56px;
+  height: 56px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 12px rgba(91,78,232,0.3);
+}
+.flow-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+/* ===== FAQ SECTION ===== */
+.section-faq {
+  padding: 96px 0;
+  background: var(--surface-alt);
+}
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.faq-item {
+  background: #fff;
+  border-radius: var(--radius-card);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: left;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+.faq-question:hover { background: var(--surface-alt); }
+.faq-icon {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  background: var(--accent-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+.faq-icon svg { width: 12px; height: 12px; stroke: var(--accent); fill: none; stroke-width: 2.5; stroke-linecap: round; }
+.faq-item.open .faq-icon { transform: rotate(45deg); background: var(--accent); }
+.faq-item.open .faq-icon svg { stroke: #fff; }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.faq-item.open .faq-answer { max-height: 300px; }
+.faq-answer-inner {
+  padding: 0 28px 24px;
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ===== CTA SECTION ===== */
+.section-cta {
+  position: relative;
+  padding: 120px 0;
+  overflow: hidden;
+  background: #1A1A2E;
+}
+.cta-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+}
+.cta-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.cta-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+.cta-desc {
+  font-size: 16px;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 40px;
+  line-height: 1.7;
+}
+.cta-btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 18px 48px;
+  border-radius: var(--radius-btn);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  box-shadow: 0 8px 24px rgba(91,78,232,0.45);
+  margin-bottom: 40px;
+}
+.cta-btn:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(91,78,232,0.5); }
+.cta-contacts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.cta-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.85);
+  font-size: 15px;
+}
+.cta-contact-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cta-contact-icon svg { width: 16px; height: 16px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ===== CONTACT FORM ===== */
+.section-contact {
+  padding: 96px 0;
+  background: #ffffff;
+}
+.contact-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.form-required {
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 500;
+  margin-left: 4px;
+}
+.form-input,
+.form-textarea {
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text-primary);
+  background: #ffffff;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-btn);
+  padding: 14px 16px;
+  width: 100%;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(91,78,232,0.12);
+}
+.form-textarea { min-height: 140px; resize: vertical; }
+.form-submit {
+  align-self: flex-start;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #111111;
+  padding: 40px 24px;
+  text-align: center;
+}
+.footer-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.footer-logo img {
+  height: 32px;
+  border-radius: 4px;
+}
+.footer-logo-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+.footer-copy {
+  font-size: 13px;
+  color: #666;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 60px 24px 80px;
+  }
+  .hero-photo-wrap { order: -1; max-width: 360px; margin: 0 auto; }
+  .worry-grid { grid-template-columns: 1fr; }
+  .service-body { grid-template-columns: 1fr; }
+  .service-header { flex-direction: column; gap: 16px; }
+  .strength-grid { grid-template-columns: 1fr; }
+  .achievement-stats { grid-template-columns: repeat(2, 1fr); }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .flow-list {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .flow-list::before { display: none; }
+  .flow-item { flex-direction: row; text-align: left; gap: 16px; }
+  .flow-circle { margin-bottom: 0; }
+  .cta-contacts { flex-direction: column; gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="images/milailab_logo.jpg" alt="Mi-LAI Lab">
+      <span class="nav-logo-text">Mi-LAI Lab</span>
+    </a>
+    <a href="#contact" class="btn-primary">まずは無料相談</a>
+  </div>
+</nav>
+
+<!-- SECTION 1: HERO -->
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-eyebrow">奈良県内の中小事業者向け</p>
+      <h1 class="hero-title">ホームページ、どうしよう？<br><span>AIで、すぐできます。</span></h1>
+      <p class="hero-desc">AI活用のプロが、あなたの事業に合ったホームページ制作・業務自動化をサポートします。高い・難しいはもう過去のこと。</p>
+      <a href="#contact" class="btn-primary">まずは無料で相談する</a>
+    </div>
+    <div class="hero-photo-wrap">
+      <img src="images/kita_profile.jpg" alt="Mi-LAI Lab 代表 北">
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: WORRY -->
+<section class="section-worry" id="worry">
+  <div class="container">
+    <h2 class="section-title">こんなお悩みありませんか？</h2>
+    <div class="worry-grid">
+      <div class="worry-card">
+        <img class="worry-card-img" src="images/worry_1_no_website.jpg" alt="ホームページで悩む事業者">
+        <div class="worry-card-body">
+          <p class="worry-card-num">悩み 01</p>
+          <p class="worry-card-text">ホームページが必要な気はするけど、何から始めればいいかわからない</p>
+        </div>
+      </div>
+      <div class="worry-card">
+        <img class="worry-card-img" src="images/worry_2_expensive.jpg" alt="費用が高くて困る事業者">
+        <div class="worry-card-body">
+          <p class="worry-card-num">悩み 02</p>
+          <p class="worry-card-text">業者に頼むと数十万かかると聞いて諦めた</p>
+        </div>
+      </div>
+      <div class="worry-card">
+        <img class="worry-card-img" src="images/worry_3_sns.jpg" alt="SNSが続かない">
+        <div class="worry-card-body">
+          <p class="worry-card-num">悩み 03</p>
+          <p class="worry-card-text">SNSを始めたけど更新が続かない</p>
+        </div>
+      </div>
+      <div class="worry-card">
+        <img class="worry-card-img" src="images/worry_4_busy.jpg" alt="事務作業に追われる">
+        <div class="worry-card-body">
+          <p class="worry-card-num">悩み 04</p>
+          <p class="worry-card-text">人手が足りなくて事務作業に追われている</p>
+        </div>
+      </div>
+      <div class="worry-card">
+        <img class="worry-card-img" src="images/worry_5_ai_unknown.jpg" alt="AIがわからない">
+        <div class="worry-card-body">
+          <p class="worry-card-num">悩み 05</p>
+          <p class="worry-card-text">AIが話題だけど、うちの仕事にどう使えるのかわからない</p>
+        </div>
+      </div>
+    </div>
+    <div class="worry-transition">
+      その悩み、<span>Mi-LAI Lab</span>が解決します。
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: SERVICES -->
+<section class="section-service" id="services">
+  <div class="container">
+    <h2 class="section-title">サービス紹介</h2>
+
+    <!-- 3-1: HP制作 -->
+    <div class="service-block">
+      <img class="service-hero-img" src="images/service_web_design.jpg" alt="AI時代のHP制作">
+      <div class="service-header">
+        <div class="service-title-group">
+          <p class="service-label">Service 01</p>
+          <h3 class="service-title">AI時代のHP制作</h3>
+        </div>
+        <div class="service-price">¥50,000〜</div>
+      </div>
+      <div class="service-body">
+        <div class="service-features">
+          <h3>特徴</h3>
+          <ul class="feature-list">
+            <li>AIを活用した高速制作で費用を大幅削減</li>
+            <li>スマホ対応・SEO対策済みで集客力アップ</li>
+            <li>1〜2週間の短納期で事業にすぐ役立つ</li>
+            <li>納品後もサポートあり、安心して使える</li>
+          </ul>
+          <a href="#contact" class="btn-primary">詳しく相談する</a>
+        </div>
+        <div class="service-steps">
+          <h3>制作の流れ</h3>
+          <div class="step-list">
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <p class="step-text">無料ヒアリング<br><small style="color:var(--text-secondary)">事業の強みや目標をお聞きします</small></p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <p class="step-text">デザイン提案・お見積り<br><small style="color:var(--text-secondary)">方向性を確認してから進めます</small></p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <p class="step-text">制作・確認<br><small style="color:var(--text-secondary)">AIを活用して迅速に制作</small></p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <p class="step-text">納品・公開<br><small style="color:var(--text-secondary)">公開後もサポートいたします</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-2: AI業務自動化 -->
+    <div class="service-block">
+      <img class="service-hero-img" src="images/service_automation.jpg" alt="AI業務自動化">
+      <div class="service-header">
+        <div class="service-title-group">
+          <p class="service-label">Service 02</p>
+          <h3 class="service-title">AI業務自動化</h3>
+        </div>
+        <div class="service-price">1業務 ¥10,000〜</div>
+      </div>
+      <div class="service-body">
+        <div class="service-features">
+          <h3>対応業務例</h3>
+          <ul class="feature-list">
+            <li>見積書・請求書の自動作成・送付</li>
+            <li>問い合わせへの自動返信・振り分け</li>
+            <li>在庫管理・発注の自動化</li>
+            <li>SNS投稿の自動スケジューリング</li>
+          </ul>
+          <a href="#contact" class="btn-primary">詳しく相談する</a>
+        </div>
+        <div class="service-steps">
+          <h3>導入の流れ</h3>
+          <div class="step-list">
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <p class="step-text">業務ヒアリング<br><small style="color:var(--text-secondary)">どの業務を自動化したいか確認</small></p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <p class="step-text">自動化設計<br><small style="color:var(--text-secondary)">最適なツール・フローを提案</small></p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <p class="step-text">構築・テスト<br><small style="color:var(--text-secondary)">実際の業務で動作確認</small></p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">4</div>
+              <p class="step-text">納品・操作説明<br><small style="color:var(--text-secondary)">使い方をわかりやすくレクチャー</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: STRENGTH -->
+<section class="section-strength" id="strength">
+  <div class="container">
+    <h2 class="section-title">なぜMi-LAI Labが選ばれるのか</h2>
+    <div class="strength-grid">
+      <div class="strength-card">
+        <img class="strength-img" src="images/strength_speed.jpg" alt="AIを使うから早い・安い">
+        <div class="strength-body">
+          <h3 class="strength-title">AIを使うから早い・安い</h3>
+          <p class="strength-desc">最新のAI技術を活用することで、従来の制作会社では数十万円・数ヶ月かかっていた作業を、短期間・低コストで提供します。</p>
+        </div>
+      </div>
+      <div class="strength-card">
+        <img class="strength-img" src="images/strength_teaching.jpg" alt="教育のプロが対応">
+        <div class="strength-body">
+          <h3 class="strength-title">教育のプロが対応</h3>
+          <p class="strength-desc">セミナー・ワークショップ講師として1,000人以上に指導してきた経験から、難しいことをわかりやすく説明します。ITが苦手でも安心。</p>
+        </div>
+      </div>
+      <div class="strength-card">
+        <img class="strength-img" src="images/strength_local.jpg" alt="奈良県在住の地元専門家">
+        <div class="strength-body">
+          <h3 class="strength-title">奈良県在住の地元専門家</h3>
+          <p class="strength-desc">奈良県内の事業者さまのことをよく知る地元の専門家として、対面での相談にも対応。顔の見える安心感があります。</p>
+        </div>
+      </div>
+      <div class="strength-card">
+        <img class="strength-img" src="images/strength_support.jpg" alt="作って終わりじゃない">
+        <div class="strength-body">
+          <h3 class="strength-title">作って終わりじゃない</h3>
+          <p class="strength-desc">納品後も継続的にサポート。操作方法の質問や更新作業のご相談など、長期的なパートナーとしてお付き合いします。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: ACHIEVEMENT -->
+<section class="section-achievement" id="achievement">
+  <div class="container">
+    <h2 class="section-title">Mi-LAI Labの実績</h2>
+    <img class="achievement-banner" src="images/achievement_seminar.jpg" alt="セミナー・講演の会場">
+    <div class="achievement-stats">
+      <div class="stat-card">
+        <p class="stat-num">1,000人+</p>
+        <p class="stat-label">セミナー受講者数</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-num">複数</p>
+        <p class="stat-label">Webサービス開発実績</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-num">多数</p>
+        <p class="stat-label">企業研修・講演実績</p>
+      </div>
+      <div class="stat-card">
+        <p class="stat-num">継続中</p>
+        <p class="stat-label">ワークショップ開催</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: PRICING -->
+<section class="section-pricing" id="pricing">
+  <div class="container">
+    <h2 class="section-title">料金・プラン</h2>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <p class="pricing-service-name">HP制作</p>
+        <p class="pricing-plan-name">ベーシックプラン</p>
+        <p class="pricing-price">¥50,000〜</p>
+        <p class="pricing-duration">目安期間：1〜2週間</p>
+        <ul class="feature-list">
+          <li>スマホ対応・SEO基本設定込み</li>
+          <li>シンプルで伝わるデザイン</li>
+          <li>納品後サポートあり</li>
+        </ul>
+      </div>
+      <div class="pricing-card featured">
+        <p class="pricing-service-name">HP制作</p>
+        <p class="pricing-plan-name">カスタムプラン</p>
+        <p class="pricing-price">¥100,000〜</p>
+        <p class="pricing-duration">目安期間：2〜4週間</p>
+        <ul class="feature-list">
+          <li>オリジナルデザイン・機能追加</li>
+          <li>予約システム・お問い合わせフォーム等</li>
+          <li>継続サポートプラン対応</li>
+        </ul>
+      </div>
+      <div class="pricing-card">
+        <p class="pricing-service-name">AI業務自動化</p>
+        <p class="pricing-plan-name">1業務パック</p>
+        <p class="pricing-price">¥10,000〜</p>
+        <p class="pricing-duration">目安期間：1〜2週間</p>
+        <ul class="feature-list">
+          <li>1業務の自動化フロー構築</li>
+          <li>操作説明・マニュアル付き</li>
+          <li>1ヶ月間のフォローアップ</li>
+        </ul>
+      </div>
+      <div class="pricing-card">
+        <p class="pricing-service-name">AI業務自動化</p>
+        <p class="pricing-plan-name">複数業務パック</p>
+        <p class="pricing-price">要相談</p>
+        <p class="pricing-duration">目安期間：要相談</p>
+        <ul class="feature-list">
+          <li>複数業務の包括的な自動化</li>
+          <li>全社的な業務改善も対応</li>
+          <li>継続サポート契約可能</li>
+        </ul>
+      </div>
+    </div>
+    <p class="pricing-note">すべて税込。内容により変動あり。まずはお気軽にご相談ください。</p>
+  </div>
+</section>
+
+<!-- SECTION 7: FLOW -->
+<section class="section-flow" id="flow">
+  <div class="container">
+    <h2 class="section-title">ご利用の流れ</h2>
+    <div class="flow-list">
+      <div class="flow-item">
+        <div class="flow-circle">1</div>
+        <p class="flow-label">お問い合わせ</p>
+      </div>
+      <div class="flow-item">
+        <div class="flow-circle">2</div>
+        <p class="flow-label">無料ヒアリング</p>
+      </div>
+      <div class="flow-item">
+        <div class="flow-circle">3</div>
+        <p class="flow-label">ご提案・お見積り</p>
+      </div>
+      <div class="flow-item">
+        <div class="flow-circle">4</div>
+        <p class="flow-label">制作・導入</p>
+      </div>
+      <div class="flow-item">
+        <div class="flow-circle">5</div>
+        <p class="flow-label">納品・サポート</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: FAQ -->
+<section class="section-faq" id="faq">
+  <div class="container">
+    <h2 class="section-title">よくある質問</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>パソコンに詳しくないのですが大丈夫ですか？</span>
+          <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">まったく問題ありません。ITや機械が苦手な方でも安心してご相談いただけるよう、わかりやすい言葉で丁寧にご説明します。教育・研修の専門家として1,000人以上にお教えしてきた経験を活かしてサポートします。</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>ホームページは本当に必要ですか？</span>
+          <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">今の時代、新規のお客様が「この店は信頼できるか」を確認するのに最初に見るのがホームページです。SNSだけでは届かない層にリーチできるため、集客・信頼構築の両面で大きな効果があります。まずご相談ください。</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>他の業者と何が違うのですか？</span>
+          <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">最大の違いは「AIを活用した圧倒的なコストパフォーマンス」と「地元・奈良県在住の専門家である点」です。大手業者と異なり顔が見える関係でご相談でき、制作後も継続的にサポートします。</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>追加費用はかかりますか？</span>
+          <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">事前にご提案・お見積りの段階で費用を明示しますので、急な追加費用はありません。ご要望の変更や追加作業が生じた場合は、事前にご相談してから対応します。</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>オンラインでの対応も可能ですか？</span>
+          <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">はい、Zoom・Google Meetなどを使ったオンラインでのご相談も承っております。奈良県外の方もお気軽にご連絡ください。もちろん対面でのご相談も歓迎です。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: CTA -->
+<section class="section-cta" id="cta">
+  <img class="cta-bg" src="images/cta_bg.jpg" alt="">
+  <div class="cta-inner">
+    <h2 class="cta-title">まずは無料で<br>相談してみませんか？</h2>
+    <p class="cta-desc">費用のこと、内容のこと、なんでもお気軽に。<br>相談するだけでも歓迎です。</p>
+    <a href="#contact" class="cta-btn">まずは無料で相談する</a>
+    <div class="cta-contacts">
+      <div class="cta-contact-item">
+        <span class="cta-contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.07 6.07l.96-.96a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </span>
+        <span>090-6836-8707</span>
+      </div>
+      <div class="cta-contact-item">
+        <span class="cta-contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </span>
+        <span>contact@milailab.teen.jp</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 10: CONTACT FORM -->
+<section class="section-contact" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <h2 class="section-title">お問い合わせ</h2>
+      <form class="contact-form" netlify>
+        <div class="form-group">
+          <label class="form-label" for="name">お名前<span class="form-required">必須</span></label>
+          <input class="form-input" type="text" id="name" name="name" placeholder="山田 太郎" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">メールアドレス<span class="form-required">必須</span></label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="example@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">ご相談内容</label>
+          <textarea class="form-textarea" id="message" name="message" placeholder="ホームページ制作について相談したい、AI活用の方法が知りたいなど、お気軽にどうぞ。"></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn-primary">送信する</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">
+    <img src="images/milailab_logo.jpg" alt="Mi-LAI Lab">
+    <span class="footer-logo-name">Mi-LAI Lab</span>
+  </div>
+  <p class="footer-copy">© 2026 Mi-LAI Lab. All rights reserved.</p>
+</footer>
+
+<script>
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+</script>
+
+</body>
+</html>
