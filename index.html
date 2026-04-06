@@ -745,8 +745,12 @@ a { color: inherit; text-decoration: none; }
   background: #ffffff;
 }
 .contact-inner {
-  max-width: 640px;
+  max-width: 720px;
   margin: 0 auto;
+}
+.google-form-wrap {
+  border-radius: 20px;
+  overflow: hidden;
 }
 .contact-form {
   display: flex;
@@ -1250,23 +1254,21 @@ a { color: inherit; text-decoration: none; }
   <div class="container">
     <div class="contact-inner">
       <h2 class="section-title">お問い合わせ</h2>
-      <form class="contact-form" netlify>
-        <div class="form-group">
-          <label class="form-label" for="name">お名前<span class="form-required">必須</span></label>
-          <input class="form-input" type="text" id="name" name="name" placeholder="山田 太郎" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="email">メールアドレス<span class="form-required">必須</span></label>
-          <input class="form-input" type="email" id="email" name="email" placeholder="example@email.com" required>
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="message">ご相談内容</label>
-          <textarea class="form-textarea" id="message" name="message" placeholder="ホームページ制作について相談したい、AI活用の方法が知りたいなど、お気軽にどうぞ。"></textarea>
-        </div>
-        <div class="form-submit">
-          <button type="submit" class="btn-primary">送信する</button>
-        </div>
-      </form>
+      <p style="text-align:center; color:var(--text-secondary); margin-bottom:32px; font-size:15px;">
+        無料相談・お見積りはお気軽にどうぞ。<br>通常1営業日以内にご返信いたします。
+      </p>
+      <div class="google-form-wrap">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfULX1aSe4fMpk0IXoUoMR-7ms4Ej6o87dJ9WPzQakZIsL3dA/viewform?embedded=true"
+          width="100%"
+          height="600"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="Mi-LAI Lab 無料相談フォーム"
+          style="border-radius:20px; box-shadow: rgba(0,0,0,0.02) 0px 0px 0px 1px, rgba(0,0,0,0.04) 0px 2px 6px, rgba(0,0,0,0.10) 0px 4px 8px;"
+        >読み込んでいます…</iframe>
+      </div>
     </div>
   </div>
 </section>
